@@ -48,31 +48,39 @@
 **
 ****************************************************************************/
 
-#include <QLineEdit>
-#include <QVBoxLayout>
+#ifndef MDICHILD_H
+#define MDICHILD_H
 
-#include "dialog.h"
-#include "wigglywidget.h"
+#include <QTextEdit>
 
-//! [0]
-Dialog::Dialog(QWidget *parent)
-    : QDialog(parent)
+class MdiChild : public QTextEdit
 {
-    WigglyWidget *wigglyWidget = new WigglyWidget;
-    QLineEdit *lineEdit = new QLineEdit;
+    Q_OBJECT
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(wigglyWidget);
-    layout->addWidget(lineEdit);
+public:
+    MdiChild();
 
-    connect(lineEdit, &QLineEdit::textChanged, wigglyWidget, &WigglyWidget::setText);
-#ifdef __linux__
-    lineEdit->setText(tr("Hello from Linux!"));
-#else
-    lineEdit->setText(tr("Hello from Windows!"));
+    void newFile();
+    bool loadFile(const QString &fileName);
+    bool save();
+    bool saveAs();
+    bool saveFile(const QString &fileName);
+    QString userFriendlyCurrentFile();
+    QString currentFile() { return curFile; }
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
+private slots:
+    void documentWasModified();
+
+private:
+    bool maybeSave();
+    void setCurrentFile(const QString &fileName);
+    QString strippedName(const QString &fullFileName);
+
+    QString curFile;
+    bool isUntitled;
+};
+
 #endif
-
-    setWindowTitle(tr("Wiggly"));
-    resize(360, 145);
-}
-//! [0]

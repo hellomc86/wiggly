@@ -48,32 +48,84 @@
 **
 ****************************************************************************/
 
-#ifndef WIGGLYWIDGET_H
-#define WIGGLYWIDGET_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-#include <QBasicTimer>
-#include <QWidget>
+#include <QMainWindow>
 
-//! [0]
-class WigglyWidget : public QWidget
+class MdiChild;
+QT_BEGIN_NAMESPACE
+class QAction;
+class QMenu;
+class QMdiArea;
+class QMdiSubWindow;
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    WigglyWidget(QWidget *parent = 0);
+    MainWindow();
 
-public slots:
-    void setText(const QString &newText) { text = newText; }
+    bool openFile(const QString &fileName);
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
-    void timerEvent(QTimerEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
+
+private slots:
+    void newFile();
+    void open();
+    void save();
+    void saveAs();
+    void updateRecentFileActions();
+    void openRecentFile();
+#ifndef QT_NO_CLIPBOARD
+    void cut();
+    void copy();
+    void paste();
+#endif
+    void about();
+    void updateMenus();
+    void updateWindowMenu();
+    MdiChild *createMdiChild();
+    void switchLayoutDirection();
 
 private:
-    QBasicTimer timer;
-    QString text;
-    int step;
+    enum { MaxRecentFiles = 5 };
+
+    void createActions();
+    void createStatusBar();
+    void readSettings();
+    void writeSettings();
+    bool loadFile(const QString &fileName);
+    static bool hasRecentFiles();
+    void prependToRecentFiles(const QString &fileName);
+    void setRecentFilesVisible(bool visible);
+    MdiChild *activeMdiChild() const;
+    QMdiSubWindow *findMdiChild(const QString &fileName) const;
+
+    QMdiArea *mdiArea;
+
+    QMenu *windowMenu;
+    QAction *newAct;
+    QAction *saveAct;
+    QAction *saveAsAct;
+    QAction *recentFileActs[MaxRecentFiles];
+    QAction *recentFileSeparator;
+    QAction *recentFileSubMenuAct;
+#ifndef QT_NO_CLIPBOARD
+    QAction *cutAct;
+    QAction *copyAct;
+    QAction *pasteAct;
+#endif
+    QAction *closeAct;
+    QAction *closeAllAct;
+    QAction *tileAct;
+    QAction *cascadeAct;
+    QAction *nextAct;
+    QAction *previousAct;
+    QAction *windowMenuSeparatorAct;
 };
-//! [0]
 
 #endif
