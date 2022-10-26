@@ -51,14 +51,17 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+#include <QResource>
 
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
+    QResource::registerResource("mdi.rcc");
     //Q_INIT_RESOURCE(mdi);
 
     QApplication app(argc, argv);
+   
     QCoreApplication::setApplicationName("MDI Example");
     QCoreApplication::setOrganizationName("QtProject");
     QCoreApplication::setApplicationVersion(QT_VERSION_STR);
@@ -67,6 +70,7 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("file", "The file to open.");
+
     parser.process(app);
 
     MainWindow mainWin;

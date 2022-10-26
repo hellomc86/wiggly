@@ -68,6 +68,8 @@ MainWindow::MainWindow()
 
     readSettings();
 
+    
+
     setWindowTitle(tr("MDI"));
     setUnifiedTitleAndToolBarOnMac(true);
 }

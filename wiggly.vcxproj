@@ -289,6 +289,18 @@
       <Command>
       </Command>
     </RemotePostBuildEvent>
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+    <RemotePreBuildEvent>
+      <AdditionalSourcesToCopyMapping>
+      </AdditionalSourcesToCopyMapping>
+    </RemotePreBuildEvent>
+    <ResourceCompile>
+      <ResourceOutputFileName>
+      </ResourceOutputFileName>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Linux|x64'">
     <ClCompile>
@@ -322,19 +334,22 @@
   <ItemGroup>
     <ClInclude Include="mainwindow.h" />
     <ClInclude Include="mdichild.h" />
-    <ClInclude Include="resource.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Linux|x64'">true</ExcludedFromBuild>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="mdi.qrc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Linux|x64'">true</ExcludedFromBuild>
-    </None>
+    <None Include="mdi.qrc" />
+    <None Include="mdi.rcc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="mdi.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Linux|x64'">true</ExcludedFromBuild>
-    </ResourceCompile>
+    <Image Include="images\copy.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="images\cut.png" />
+    <Image Include="images\new.png" />
+    <Image Include="images\open.png" />
+    <Image Include="images\paste.png" />
+    <Image Include="images\save.png">
+      <DeploymentContent>false</DeploymentContent>
+    </Image>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
