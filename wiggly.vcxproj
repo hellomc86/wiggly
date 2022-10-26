@@ -336,6 +336,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Linux|x64'">true</ExcludedFromBuild>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\copy.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="images\cut.png" />
+    <Image Include="images\new.png" />
+    <Image Include="images\open.png" />
+    <Image Include="images\paste.png" />
+    <Image Include="images\save.png">
+      <DeploymentContent>false</DeploymentContent>
+    </Image>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
   <Target Name="Moc" Inputs="%(ClInclude.Identity)" Outputs="@(ClInclude->'moc/moc_%(Filename).cpp')">
