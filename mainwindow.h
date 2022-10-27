@@ -56,6 +56,7 @@
 class MdiChild;
 QT_BEGIN_NAMESPACE
 class QAction;
+class QListWidget;
 class QMenu;
 class QMdiArea;
 class QMdiSubWindow;
@@ -96,6 +97,7 @@ private:
 
     void createActions();
     void createStatusBar();
+    void createDockWindows();
     void readSettings();
     void writeSettings();
     bool loadFile(const QString &fileName);
@@ -106,6 +108,7 @@ private:
     QMdiSubWindow *findMdiChild(const QString &fileName) const;
 
     QMdiArea *mdiArea;
+    QListWidget* customerList;
 
     QMenu *windowMenu;
     QAction *newAct;
@@ -126,6 +129,7 @@ private:
     QAction *nextAct;
     QAction *previousAct;
     QAction *windowMenuSeparatorAct;
+
 };
 
 #endif
