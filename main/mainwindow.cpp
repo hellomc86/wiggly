@@ -511,6 +511,13 @@ void MainWindow::switchLayoutDirection()
 
 void MainWindow::createDockWindows()
 {
+   
+    this->setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
+    this->setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
+    this->setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
+    this->setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
+
+
     QDockWidget* dock = new QDockWidget(tr("Customers"), this);
     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     customerList = new QListWidget(dock);
@@ -524,4 +531,32 @@ void MainWindow::createDockWindows()
     dock->setWidget(customerList);
     addDockWidget(Qt::RightDockWidgetArea, dock);
     //viewMenu->addAction(dock->toggleViewAction());
+
+    dock = new QDockWidget(tr("Customers2"), this);
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    customerList = new QListWidget(dock);
+    customerList->addItems(QStringList()
+        << "John Doe, Harmony Enterprises, 12 Lakeside, Ambleton"
+        << "Jane Doe, Memorabilia, 23 Watersedge, Beaton"
+        << "Tammy Shea, Tiblanka, 38 Sea Views, Carlton"
+        << "Tim Sheen, Caraba Gifts, 48 Ocean Way, Deal"
+        << "Sol Harvey, Chicos Coffee, 53 New Springs, Eccleston"
+        << "Sally Hobart, Tiroli Tea, 67 Long River, Fedula");
+    dock->setWidget(customerList);
+    addDockWidget(Qt::RightDockWidgetArea, dock);
+
+    dock = new QDockWidget(tr("Customers2"), this);
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    customerList = new QListWidget(dock);
+    customerList->addItems(QStringList()
+        << "John Doe, Harmony Enterprises, 12 Lakeside, Ambleton"
+        << "Jane Doe, Memorabilia, 23 Watersedge, Beaton"
+        << "Tammy Shea, Tiblanka, 38 Sea Views, Carlton"
+        << "Tim Sheen, Caraba Gifts, 48 Ocean Way, Deal"
+        << "Sol Harvey, Chicos Coffee, 53 New Springs, Eccleston"
+        << "Sally Hobart, Tiroli Tea, 67 Long River, Fedula");
+    dock->setWidget(customerList);
+    addDockWidget(Qt::LeftDockWidgetArea, dock);
+
+    QWizardPage* page = new QWizardPage;
 }

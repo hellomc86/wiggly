@@ -223,14 +223,8 @@
       <AdditionalIncludeDirectories>$(QTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>
-        ;$(QTDIR)\lib\Qt5Widgetsd.lib;
-        ;$(QTDIR)\lib\Qt5Guid.lib;
-        ;$(QTDIR)\lib\Qt5Cored.lib;
-        ;$(QTDIR)\lib\qtmaind.lib;
-        ;shell32.lib;
-        ;%(AdditionalDependencies);
-      </AdditionalDependencies>
+      <AdditionalDependencies>$(QTDIR)\lib\Qt5Widgetsd.lib;
+$(QTDIR)\lib\Qt5Charts.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(QTDIR)\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -327,27 +321,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainwindow.cpp" />
-    <ClCompile Include="mdichild.cpp" />
+    <ClCompile Include="charts\main1.cpp" />
+    <ClCompile Include="charts\themewidget.cpp" />
+    <ClCompile Include="main\main.cpp" />
+    <ClCompile Include="main\mainwindow.cpp" />
+    <ClCompile Include="main\mdichild.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mainwindow.h" />
-    <ClInclude Include="mdichild.h" />
+    <ClInclude Include="charts\themewidget.h" />
+    <ClInclude Include="charts\ui_themewidget.h" />
+    <ClInclude Include="main\mainwindow.h" />
+    <ClInclude Include="main\mdichild.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="mdi.qrc" />
-    <None Include="mdi.rcc" />
+    <None Include="resource\mdi.qrc" />
+    <None Include="resource\mdi.rcc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\copy.png">
+    <Image Include="resource\images\copy.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="images\cut.png" />
-    <Image Include="images\new.png" />
-    <Image Include="images\open.png" />
-    <Image Include="images\paste.png" />
-    <Image Include="images\save.png">
+    <Image Include="resource\images\cut.png" />
+    <Image Include="resource\images\new.png" />
+    <Image Include="resource\images\open.png" />
+    <Image Include="resource\images\paste.png" />
+    <Image Include="resource\images\save.png">
       <DeploymentContent>false</DeploymentContent>
     </Image>
   </ItemGroup>
