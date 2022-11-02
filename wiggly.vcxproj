@@ -223,8 +223,7 @@
       <AdditionalIncludeDirectories>$(QTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\Qt5Widgetsd.lib;
-$(QTDIR)\lib\Qt5Charts.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(QTDIR)\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Chartsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(QTDIR)\lib\qtmaind.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -277,7 +276,7 @@ $(QTDIR)\lib\Qt5Charts.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(
       </CppAdditionalWarning>
     </ClCompile>
     <Link>
-      <LibraryDependencies>Qt5Core;Qt5Gui;Qt5Widgets;</LibraryDependencies>
+      <LibraryDependencies>Qt5Core;Qt5Gui;Qt5Widgets;Qt5Charts</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent>
       <Command>
@@ -321,31 +320,31 @@ $(QTDIR)\lib\Qt5Charts.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="charts\main1.cpp" />
-    <ClCompile Include="charts\themewidget.cpp" />
-    <ClCompile Include="main\main.cpp" />
-    <ClCompile Include="main\mainwindow.cpp" />
-    <ClCompile Include="main\mdichild.cpp" />
+    <ClCompile Include="charts/main1.cpp" />
+    <ClCompile Include="charts/themewidget.cpp" />
+    <ClCompile Include="main/main.cpp" />
+    <ClCompile Include="main/mainwindow.cpp" />
+    <ClCompile Include="main/mdichild.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="charts\themewidget.h" />
-    <ClInclude Include="charts\ui_themewidget.h" />
-    <ClInclude Include="main\mainwindow.h" />
-    <ClInclude Include="main\mdichild.h" />
+    <ClInclude Include="charts/themewidget.h" />
+    <ClInclude Include="charts/ui_themewidget.h" />
+    <ClInclude Include="main/mainwindow.h" />
+    <ClInclude Include="main/mdichild.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\mdi.qrc" />
+    <None Include="resource/mdi.qrc" />
     <None Include="resource\mdi.rcc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="resource\images\copy.png">
+    <Image Include="resource/images/copy.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
-    <Image Include="resource\images\cut.png" />
-    <Image Include="resource\images\new.png" />
-    <Image Include="resource\images\open.png" />
-    <Image Include="resource\images\paste.png" />
-    <Image Include="resource\images\save.png">
+    <Image Include="resource/images/cut.png" />
+    <Image Include="resource/images/new.png" />
+    <Image Include="resource/images/open.png" />
+    <Image Include="resource/images/paste.png" />
+    <Image Include="resource/images/save.png">
       <DeploymentContent>false</DeploymentContent>
     </Image>
   </ItemGroup>
@@ -364,16 +363,16 @@ $(QTDIR)\lib\Qt5Charts.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(
       <MocCmd>$(MocCmd) @(MocIncludePath->'"-I%(Identity)"', ' ')</MocCmd>
     </PropertyGroup>
     <Exec Condition="'$(Configuration)' == 'Debug_Windows' OR '$(Configuration)' == 'Release_Windows'" WorkingDirectory="$(ProjectDir)" Command="$(MocCmd) %(ClInclude.Identity) -o moc/moc_%(ClInclude.Filename).cpp" />
-    <ResolveRemoteDir Condition="'$(Configuration)' == 'Debug_Linux' OR '$(Configuration)' == 'Release_Linux'" ProjectDir="$(ProjectDir)" RemoteOutputDir="$(Platform)\$(Configuration)\" OutputDir="$(Platform)\$(Configuration)\" IntermediateDir="$(IntDir)" RemoteIntermediateDir="IntDir" RemoteProjectDir="$(RemoteProjectDir)/moc" RemoteTarget="$(ResolvedRemoteTarget)" RemoteProjectDirFile="$(RemoteProjectDirFile)" RequireRemoteConnection="$(RequireRemoteConnection)">
+    <ResolveRemoteDir Condition="'$(Configuration)' == 'Debug_Linux' OR '$(Configuration)' == 'Release_Linux'" ProjectDir="$(ProjectDir)" RemoteOutputDir="$(Platform)/$(Configuration)/" OutputDir="$(Platform)/$(Configuration)/" IntermediateDir="$(IntDir)" RemoteIntermediateDir="IntDir" RemoteProjectDir="$(RemoteProjectDir)/moc" RemoteTarget="$(ResolvedRemoteTarget)" RemoteProjectDirFile="$(RemoteProjectDirFile)" RequireRemoteConnection="$(RequireRemoteConnection)">
       <Output TaskParameter="ResolvedRemoteProjectDir" PropertyName="ResolvedRemoteMocDir" />
     </ResolveRemoteDir>
-    <Execute Condition="'$(Configuration)' == 'Debug_Linux' OR '$(Configuration)' == 'Release_Linux'" ProjectDir="$(ProjectDir)" IntermediateDir="$(IntDir)" RemoteProjectDir="$(_ResolvedRemoteProjectDir)" RemoteOutputDir="$(Platform)\$(Configuration)\" OutputDir="$(Platform)\$(Configuration)\" RemoteIntermediateDir="IntDir" RemoteTarget="$(ResolvedRemoteTarget)" RequireRemoteConnection="$(RequireRemoteConnection)" RemoteFilesToCopyLocallyMapping="$(_ResolvedRemoteProjectDir)moc/moc_%(ClInclude.Filename).cpp:=$(ProjectDir)moc\moc_%(ClInclude.Filename).cpp" Command="$(MocCmd) %(ClInclude.Identity) -o moc/moc_%(ClInclude.Filename).cpp" />
+    <Execute Condition="'$(Configuration)' == 'Debug_Linux' OR '$(Configuration)' == 'Release_Linux'" ProjectDir="$(ProjectDir)" IntermediateDir="$(IntDir)" RemoteProjectDir="$(_ResolvedRemoteProjectDir)" RemoteOutputDir="$(Platform)/$(Configuration)/" OutputDir="$(Platform)/$(Configuration)/" RemoteIntermediateDir="IntDir" RemoteTarget="$(ResolvedRemoteTarget)" RequireRemoteConnection="$(RequireRemoteConnection)" RemoteFilesToCopyLocallyMapping="$(_ResolvedRemoteProjectDir)/moc/moc_%(ClInclude.Filename).cpp:=$(ProjectDir)/moc/moc_%(ClInclude.Filename).cpp" Command="$(MocCmd) %(ClInclude.Identity) -o moc/moc_%(ClInclude.Filename).cpp" />
     <ItemGroup>
-      <ClCompile Include="moc\moc_%(ClInclude.Filename).cpp" />
+      <ClCompile Include="moc/moc_%(ClInclude.Filename).cpp" />
     </ItemGroup>
   </Target>
   <Target Name="Clean_Moc">
-    <Delete Files="moc\moc_%(ClInclude.Filename).cpp" />
+    <Delete Files="moc/moc_%(ClInclude.Filename).cpp" />
   </Target>
   <PropertyGroup>
     <BeforeBuildCompileTargets>$(BeforeBuildCompileTargets);Moc</BeforeBuildCompileTargets>

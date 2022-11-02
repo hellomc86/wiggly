@@ -57,7 +57,7 @@
 
 int main(int argc, char *argv[])
 {
-    QResource::registerResource("mdi.rcc");
+    QResource::registerResource("../resource/mdi.rcc");
     //Q_INIT_RESOURCE(mdi);
 
     QApplication app(argc, argv);

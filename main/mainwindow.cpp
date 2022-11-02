@@ -49,7 +49,7 @@
 ****************************************************************************/
 
 #include <QtWidgets>
-
+#include "../charts/themewidget.h"
 #include "mainwindow.h"
 #include "mdichild.h"
 
@@ -69,7 +69,7 @@ MainWindow::MainWindow()
 
     readSettings();
 
-    
+    //ui = new Ui::MainWindowsClass();
 
     setWindowTitle(tr("MDI"));
     setUnifiedTitleAndToolBarOnMac(true);
@@ -321,7 +321,7 @@ void MainWindow::createActions()
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
     QToolBar *fileToolBar = addToolBar(tr("File"));
 
-    const QIcon newIcon = QIcon::fromTheme("document-new", QIcon(":/images/new.png"));
+    const QIcon newIcon = QIcon::fromTheme("document-new", QIcon(":../resource/images/new.png"));
     newAct = new QAction(newIcon, tr("&New"), this);
     newAct->setShortcuts(QKeySequence::New);
     newAct->setStatusTip(tr("Create a new file"));
@@ -516,11 +516,12 @@ void MainWindow::createDockWindows()
     this->setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
     this->setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
     this->setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
-
+    
 
     QDockWidget* dock = new QDockWidget(tr("Customers"), this);
-    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dock->setAllowedAreas(Qt::RightDockWidgetArea);
     customerList = new QListWidget(dock);
+    //customerList->setMaximumWidth(100);
     customerList->addItems(QStringList()
         << "John Doe, Harmony Enterprises, 12 Lakeside, Ambleton"
         << "Jane Doe, Memorabilia, 23 Watersedge, Beaton"
@@ -533,8 +534,9 @@ void MainWindow::createDockWindows()
     //viewMenu->addAction(dock->toggleViewAction());
 
     dock = new QDockWidget(tr("Customers2"), this);
-    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dock->setAllowedAreas(Qt::RightDockWidgetArea);
     customerList = new QListWidget(dock);
+    //customerList->setMaximumWidth(100);
     customerList->addItems(QStringList()
         << "John Doe, Harmony Enterprises, 12 Lakeside, Ambleton"
         << "Jane Doe, Memorabilia, 23 Watersedge, Beaton"
@@ -546,8 +548,9 @@ void MainWindow::createDockWindows()
     addDockWidget(Qt::RightDockWidgetArea, dock);
 
     dock = new QDockWidget(tr("Customers2"), this);
-    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea);
     customerList = new QListWidget(dock);
+    //customerList->setMaximumWidth(100);
     customerList->addItems(QStringList()
         << "John Doe, Harmony Enterprises, 12 Lakeside, Ambleton"
         << "Jane Doe, Memorabilia, 23 Watersedge, Beaton"
@@ -558,5 +561,14 @@ void MainWindow::createDockWindows()
     dock->setWidget(customerList);
     addDockWidget(Qt::LeftDockWidgetArea, dock);
 
-    QWizardPage* page = new QWizardPage;
+    dock = new QDockWidget(tr("Central"), this);
+    //setCentralWidget(dock);
+  
+    dock->setAllowedAreas(Qt::TopDockWidgetArea);
+    ThemeWidget* widgetCentral = new ThemeWidget();
+
+    QSize screenG = QGuiApplication::primaryScreen()->size();
+    widgetCentral->setMinimumHeight(screenG.height() *0.65);
+    dock->setWidget(widgetCentral);  
+    addDockWidget(Qt::TopDockWidgetArea, dock);
 }

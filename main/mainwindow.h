@@ -81,6 +81,7 @@ private slots:
     void saveAs();
     void updateRecentFileActions();
     void openRecentFile();
+    
 #ifndef QT_NO_CLIPBOARD
     void cut();
     void copy();
