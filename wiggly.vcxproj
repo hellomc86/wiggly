@@ -294,6 +294,10 @@
       <ResourceOutputFileName>
       </ResourceOutputFileName>
     </ResourceCompile>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Linux|x64'">
     <ClCompile>
